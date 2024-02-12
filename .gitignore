@@ -1,0 +1,15 @@
+# Este archivo es para colocar todo aquello que no deseamos meter en el repositorio de git son archivos a los que no queremos hacer seguimiento
+
+#Con la pleca indicamos que queremos ignorar toda la carpeta y su contenido
+__pycache__/
+
+#Ignorando los archivo optimizados
+*.py[cod]
+
+#Ignorando los dll(Dynamic Link Library) Librerias de enlace dinamico
+*$py.class 
+
+
+#Ignorando la carpeta env  y el archivo .env que es el que contiene variables de entorno (Ignorando los enviroments)
+
+env/

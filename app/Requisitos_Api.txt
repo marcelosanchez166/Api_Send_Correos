@@ -1,0 +1,26 @@
+Flask, Jsonify, request
+
+Tipo Api : Api Restfull
+
+Consumo de la api : consumira directo de la base de datos
+
+Posibles cambios de la app To Do List : 1- podrías agregar una nueva ruta en tu aplicación para que la API pueda acceder a la información de las tareas.
+                                        2- podrías considerar añadir una tabla adicional en la base de datos para almacenar las direcciones de correo electrónico de los usuarios.
+
+
+Creacion de API Restfull
+
+1-  crear una ruta en tu API que devuelva todas las tareas pendientes para un usuario específico.(Esta ruta puede acceder a la base de datos para obtener esta información.)
+
+2- Utiliza un servicio de correo electrónico para enviar los recordatorios a los usuarios. Puedes integrar bibliotecas como smtplib en Python para enviar correos 
+   electrónicos desde tu aplicación.
+
+3- Puedes configurar un proceso de fondo (por ejemplo, utilizando Celery) que ejecute un trabajo periódicamente para enviar los recordatorios por correo electrónico basados 
+   en la información obtenida de la API.
+
+
+
+Resumen: 
+    En resumen, la API puede acceder directamente a la base de datos para obtener la información necesaria y enviar los correos electrónicos a través 
+    de un servicio de correo electrónico. Es recomendable mantener la API como un proyecto separado para una mejor organización y escalabilidad. 
+    Una API RESTful sería una opción apropiada para este caso de uso.
