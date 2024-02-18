@@ -9,7 +9,7 @@ from flask import current_app
 
 mail=Mail()
 
-ApiRestfull = Blueprint("ApiRestfull", __name__, url_prefix="/api/v1")
+ApiRestfull = Blueprint("ApiRest", __name__, url_prefix="/api/v1")
 
 @ApiRestfull.route("/get_data/<int:id_usuario>", methods=["GET"])
 def get_data(id_usuario):
@@ -32,5 +32,4 @@ def get_data(id_usuario):
         # Creando instancia del metodo confirmacion_compra del archivo emails, para poder pasarle los valores que espera, que son la instancia de flask que es la app(current_app)
         # la instancia del metodo EMAIL() que se creo arriba, el usuario actual que debo obtenerlo de alguna manera cuando se haga click en el boton, 
         #y las tareas que tambien debo obtener antes para poder enviarlas
-        confirmacion_compra(current_app, mail, current_user, tareas)#Este es un envio de correo asincrono 
-
+        #confirmacion_compra(current_app, mail, current_user, tareas)#Este es un envio de correo asincrono """

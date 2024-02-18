@@ -15,29 +15,29 @@ class Config():
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    PORT=5001
-    HOST= "0.0.0.0"
-    MAIL_SERVER=config("MAIL_SERVER")#Simple Mail Transfer Protocol
-    MAIL_PORT=config("MAIL_PORT") #Puerto de google TLS
-    MAIL_USE_TLS=config("MAIL_USE_TLS")
-    MAIL_USERNAME=config("MAIL_USERNAME")
-    MAIL_PASSWORD=config("MAIL_PASSWORD")#Usando el metodo config de la libreria decouple para no poner la password como tal a nivel de codigo si no que se creara un archivo llamado .env para poner ese tipo de variables 
+    PORT = config("PORT")
+    HOST = config("HOST")
+    # MAIL_SERVER=config("MAIL_SERVER")#Simple Mail Transfer Protocol
+    # MAIL_PORT=config("MAIL_PORT") #Puerto de google TLS
+    # MAIL_USE_TLS=config("MAIL_USE_TLS")
+    # MAIL_USERNAME=config("MAIL_USERNAME")
+    # MAIL_PASSWORD=config("MAIL_PASSWORD")#Usando el metodo config de la libreria decouple para no poner la password como tal a nivel de codigo si no que se creara un archivo llamado .env para poner ese tipo de variables 
 
 
 
 class ProductionConfig(Config):
     # DEBUG = True
-    PORT="5001"
+    PORT= "5001"
     HOST= "0.0.0.0"
-    MAIL_SERVER=config("MAIL_SERVER")#Simple Mail Transfer Protocol
-    MAIL_PORT=config("MAIL_PORT") #Puerto de google TLS
-    MAIL_USE_TLS=config("MAIL_USE_TLS")
-    MAIL_USERNAME=config("MAIL_USERNAME")
-    MAIL_PASSWORD=config("MAIL_PASSWORD")#Usando el metodo config de la libreria decouple para no poner la password como tal a nivel de codigo si no que se creara un archivo llamado .env para poner ese tipo de variables 
+    # MAIL_SERVER=config("MAIL_SERVER")#Simple Mail Transfer Protocol
+    # MAIL_PORT=config("MAIL_PORT") #Puerto de google TLS
+    # MAIL_USE_TLS=config("MAIL_USE_TLS")
+    # MAIL_USERNAME=config("MAIL_USERNAME")
+    # MAIL_PASSWORD=config("MAIL_PASSWORD")#Usando el metodo config de la libreria decouple para no poner la password como tal a nivel de codigo si no que se creara un archivo llamado .env para poner ese tipo de variables 
 
 
 #Luego instancio el metodo config para pasarle la clases de produccion y la de desarrollo para que dependiendo de donde se vaya a desplegar sea usada la clase correspondiente
 config = {
     'development': DevelopmentConfig,
-    "production" : ProductionConfig
+    "production" : ProductionConfig,
 }
