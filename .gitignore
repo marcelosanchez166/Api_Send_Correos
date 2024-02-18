@@ -13,3 +13,4 @@ __pycache__/
 #Ignorando la carpeta env  y el archivo .env que es el que contiene variables de entorno (Ignorando los enviroments)
 
 env/
+.env
