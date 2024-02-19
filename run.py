@@ -2,13 +2,24 @@
 
 from config import config
 from app import init_app
+from app.route.Api_task import mail
 
-configuration = config['development']
-app = init_app(configuration)
-#configurationprod = config['production']
+from dotenv import load_dotenv
+load_dotenv()
+
+configurationdeve = config['development']
+configurationprod = config['production']
 
 
+print(configurationdeve.PORT, configurationdeve.SECRET_KEY )
+
+
+app = init_app(configurationdeve)
+mail.init_app(app)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=configurationdeve.PORT, host=configurationdeve.HOST)
+
+
+

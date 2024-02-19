@@ -12,13 +12,40 @@ from decouple import config
 #en este caso importamos decouple para hacer uso de la variable SECRET_KEY accediendo atravez del metodo config("SECRET_KEY") y dicha valor lo guardo en una variable llamada SECRET_KEY
 class Config():
     SECRET_KEY = config('SECRET_KEY')
+    PASSWORD = config('MYSQL_PASSWORD')
+    USER = config('MYSQL_USER')
+    print(PASSWORD, USER)
+
+
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    PORT = config('PORT')
+    HOST = config('HOST')
+    MAIL_SERVER = config('MAIL_SERVER')
+    MAIL_PORT = config('MAIL_PORT')
+    MAIL_USE_TLS = config('MAIL_USE_TLS')
+    MAIL_USERNAME = config('MAIL_USERNAME')
+    print(MAIL_SERVER, MAIL_PORT, MAIL_USE_TLS,MAIL_USERNAME)
+
+
+class ProductionConfig(Config):
+    #DEBUG = True
+    PORT = config('PORT')
+    HOST = config('HOST')
+    MAIL_SERVER = config('MAIL_SERVER')
+    MAIL_PORT = config('MAIL_PORT')
+    MAIL_USE_TLS = config('MAIL_USE_TLS')
+    MAIL_USERNAME = config('MAIL_USERNAME')
+
+
+
+
 
 
 #Luego instancio el metodo config para pasarle la clases de produccion y la de desarrollo para que dependiendo de donde se vaya a desplegar sea usada la clase correspondiente
 config = {
-    'development': DevelopmentConfig
+    'development': DevelopmentConfig,
+    'production' : ProductionConfig, 
 }

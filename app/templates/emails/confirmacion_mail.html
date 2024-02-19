@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <!-- Para el envio de correo se estara enviando esta plantilla html en la cual se enviara el  Nombre_usuario el titulo de libro -->
+    <h2> {{ usuario.id_usuario }} </h2>
+
+        <table>
+            <th>
+                <td>{% for i in tareas %}
+                        <tr>{ i }</tr>
+                    {% endfor %}
+                </td>
+            </th>
+        </table>
+</body>
+</html>

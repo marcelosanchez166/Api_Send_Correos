@@ -20,13 +20,14 @@ def confirmacion_compra(mail,usuario,libro):#mail es la variable que nuestra apl
 """
 
 #Envio de correo asincrona "Mas rapido que el metodo de arriba"
-def confirmacion_compra(app,mail,usuario,libro):#mail es la variable que nuestra aplicacion utiliza para poder gestionar el envio de correos 
+def confirmacion_mail(app,mail,id_usuario,tareas):#mail es la variable que nuestra aplicacion utiliza para poder gestionar el envio de correos 
+    print(id_usuario)
     try:
         message=Message("Confirmacion de compra de libro ", #Se crea una variable apartir de la clase Message de Flask y se le pasan los siguientes valores el titulo del correo  el sender que es el que envia el correo en otra palabras el remitente y el destinatario
         sender=current_app.config["MAIL_USERNAME"], 
         recipients= config("MAIL_USERNAME") 
         )
-        message.html= render_template('emails/confirmacion_compra.html', usuario=usuario, libro=libro)#HAciendo el llamado de la plantilla que se enviara por correo ademas se le pasaran los valores de usuario y libro 
+        message.html= render_template('emails/confirmacion_mail.html', usuario=id_usuario, tareas=tareas)#HAciendo el llamado de la plantilla que se enviara por correo ademas se le pasaran los valores de usuario y libro 
         thread=Thread(target=Envio_Email_Async, args=[app,mail, message]   )#Usando el metodo Thread que se importo en la parte de arriba que se ocupa para abrir hilos, Se le pasan los parametros target que es la funcion que sirve para poder enviar el correo de manera asincrona el target recibira el meto que cree abajo llamado Envio_Email_Async y ciertos argumentos en una lista  
         thread.start()
     except Exception as ex:

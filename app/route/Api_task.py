@@ -1,18 +1,21 @@
-from flask import Blueprint, request, render_template, redirect, url_for, jsonify
-# Database
+from flask import Blueprint, request, render_template, redirect, url_for, jsonify, current_app
 from app.database.db_mysql import get_connection
+from app.emails import confirmacion_mail
 
 #Mail
-# from flask_mail import Mail
+from flask_mail import Mail
 
 
 
-# mail=Mail()
+
+mail=Mail()
+print(mail )
 
 ApiRestfull = Blueprint("ApiRestfull", __name__, url_prefix="/api/v1")
 
-@ApiRestfull.route("/get_data/<int:id_usuario>")
+@ApiRestfull.route("/get_data/<id_usuario>")
 def get_data(id_usuario):
+    print(id_usuario)
     connection = get_connection()
     with connection.cursor() as cursor:
         print(connection.host, connection.password, connection.user, connection.db)
@@ -24,14 +27,20 @@ def get_data(id_usuario):
         data = []
         for row in row:
             task = {"id": str(row[0]), "nombre_tarea": row[1], "estado": row[2], "id_usuario" : row[3]}
-        data.append(task)
+            data.append(task)
         #Si solo voy a traer una tarea si puedo usarlo de esta forma pero en el cursor deberia de ser cursor.fetchone() para solo traer una tarea dependiendo del id del usuario
         # data = {"id": row[0], "nombre_tarea": row[1], "estado": row[2], "id_usuario": row[3]}
-        return jsonify( data)
-
-
+            
         # Creando instancia del metodo confirmacion_compra del archivo emails, para poder pasarle los valores que espera, que son la instancia de flask que es la app(current_app)
         # la instancia del metodo EMAIL() que se creo arriba, el usuario actual que debo obtenerlo de alguna manera cuando se haga click en el boton, 
         #y las tareas que tambien debo obtener antes para poder enviarlas
-        #confirmacion_compra(current_app, mail, current_user, tareas)#Este es un envio de correo asincrono """
+        confirmacion_mail(current_app, mail, id_usuario, data)#Este es un envio de correo asincrono """
+        return jsonify(data)
 
+
+
+
+
+@ApiRestfull.route("/")
+def  index():
+    return "hola"
