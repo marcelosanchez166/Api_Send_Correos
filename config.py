@@ -17,8 +17,6 @@ class Config():
     print(PASSWORD, USER)
 
 
-
-
 class DevelopmentConfig(Config):
     DEBUG = True
     PORT = config('PORT')
@@ -27,7 +25,8 @@ class DevelopmentConfig(Config):
     MAIL_PORT = config('MAIL_PORT')
     MAIL_USE_TLS = config('MAIL_USE_TLS')
     MAIL_USERNAME = config('MAIL_USERNAME')
-    print(MAIL_SERVER, MAIL_PORT, MAIL_USE_TLS,MAIL_USERNAME)
+    MAIL_PASSWORD = config("MAIL_PASSWORD")
+    print(MAIL_SERVER, MAIL_PORT, MAIL_USE_TLS,MAIL_USERNAME, MAIL_PASSWORD)
 
 
 class ProductionConfig(Config):

@@ -1,15 +1,19 @@
-from flask import Blueprint, request, render_template, redirect, url_for, jsonify, current_app
+from flask import Blueprint, request, render_template, redirect, url_for, jsonify
 from app.database.db_mysql import get_connection
 from app.emails import confirmacion_mail
+from flask import current_app
+
+
 
 #Mail
 from flask_mail import Mail
 
+# print(current_app, "Imprimiendo la aplicacion actual")
 
 
 
 mail=Mail()
-print(mail )
+print(mail, "instancia de Email")
 
 ApiRestfull = Blueprint("ApiRestfull", __name__, url_prefix="/api/v1")
 
@@ -34,7 +38,12 @@ def get_data(id_usuario):
         # Creando instancia del metodo confirmacion_compra del archivo emails, para poder pasarle los valores que espera, que son la instancia de flask que es la app(current_app)
         # la instancia del metodo EMAIL() que se creo arriba, el usuario actual que debo obtenerlo de alguna manera cuando se haga click en el boton, 
         #y las tareas que tambien debo obtener antes para poder enviarlas
-        confirmacion_mail(current_app, mail, id_usuario, data)#Este es un envio de correo asincrono """
+        sql = """ SELECT  id, username, password, email FROM usuarios WHERE id = {}""".format(id_usuario)
+        cursor.execute(sql)
+        row = cursor.fetchone()
+        print(mail.state, "Instancia mail")
+        confirmacion_mail( mail, row[1], data)#Este es un envio de correo asincrono
+
         return jsonify(data)
 
 
