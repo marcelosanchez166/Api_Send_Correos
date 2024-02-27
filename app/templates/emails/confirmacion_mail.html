@@ -8,15 +8,24 @@
 </head>
 <body>
     <!-- Para el envio de correo se estara enviando esta plantilla html en la cual se enviara el  Nombre_usuario el titulo de libro -->
-    <h2> {{ usuario.id_usuario }} </h2>
 
-        <table>
-            <th>
-                <td>{% for i in tareas %}
-                        <tr>{ i }</tr>
-                    {% endfor %}
-                </td>
-            </th>
-        </table>
+    <table>
+        <h2> ¡  Lista de tareas del usuario {{ usuario[1] }}  !</h2>
+        {% for i in tareas %}
+            <tr>
+<!-- Ya no accederemos por el indice de la tupla si no por el valor de la tabla libro -->
+                <td> {{ i.nombre_tarea }} </td>
+                <td> {{ i.estado }} </td>
+                <!-- Creando tabla para que se muestren los valores en la plantilla listado_libros con los valores i[0] hasta el [2] 
+le indico que separe los valores de esta forma ya no lo mostrara como tupla -->
+                <!-- <td> {{ i[0] }} </td>
+                <td> {{ i[1] }} </td>
+                <td> {{ i[2] }} </td>
+                <td> {{ i[3] }} </td>
+                <td> {{ i[4] }} </td>
+                <td> {{ i[5] }} </td> -->
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

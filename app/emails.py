@@ -10,11 +10,12 @@ from threading import Thread
 
 #Envio de correo normal pero tarda mucho en el proceso de envio, la compra se hace rapido pero el proceso de envio de correo tarda 
 def confirmacion_mail(mail,usuario,tareas):#mail es la variable que nuestra aplicacion utiliza para poder gestionar el envio de correos 
+    print(usuario, "Usuarios recibido desde la api_task")
     try:
-        message=Message("Confirmacion de compra de envio de tareas", #Se crea una variable apartir de la clase Message de Flask y se le pasan los siguientes valores el titulo del correo  el sender que es el que envia el correo en otra palabras el remitente y el destinatario
+        message=Message("Tareas pendientes del usuario" , #Se crea una variable apartir de la clase Message de Flask y se le pasan los siguientes valores el titulo del correo  el sender que es el que envia el correo en otra palabras el remitente y el destinatario
         sender=current_app.config["MAIL_USERNAME"], 
-        recipients=['marcelosanchez166@gmail.com'])
-        message.html= render_template('emails/confirmacion_mail.html', usuario=usuario, libro=tareas)#HAciendo el llamado de la plantilla que se enviara por correo ademas se le pasaran los valores de usuario y libro 
+        recipients=[usuario[3]])
+        message.html= render_template('emails/confirmacion_mail.html', usuario=usuario, tareas=tareas)#HAciendo el llamado de la plantilla que se enviara por correo ademas se le pasaran los valores de usuario y libro 
         mail.send(message)#La variable mail es la que enviara el correo y es la que inicializamos en el archivo __init__.py
     except Exception as ex:
         raise Exception(ex)
