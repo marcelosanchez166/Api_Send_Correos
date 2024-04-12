@@ -3,7 +3,6 @@ from flask import request, jsonify, current_app, Blueprint
 import jwt
 from jwt import encode, decode
 import datetime
-from functools import wraps
 from app.database.db_mysql import get_connection
 
 from werkzeug.security import generate_password_hash, check_password_hash #Importando los metodos para encriptar y desencriptar las passwords, metodo para desencriptar(check_password_hash),metodo para encriptar(generate_password_hash)
